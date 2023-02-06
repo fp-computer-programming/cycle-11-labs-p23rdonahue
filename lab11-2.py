@@ -6,13 +6,11 @@ print(grades.values())
 
 for k in grades:
     print(k)
-for v in grades:
-    if grades[v]>70:
+for (k,v) in grades.items():
+    if (v >= 70):
         print(v)
-    else:
-        True
-for v in grades:
-    if grades[v] <50:
+
+
+for (k,v) in grades.items():
+    if (v >= 50):
         print(v)
-    else:
-        True
