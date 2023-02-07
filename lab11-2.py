@@ -2,7 +2,7 @@
 
 grades = {'Mid Year Project Presentation': 100, "Mid Year Project Proposal":90,"Mid Year Project Code":97, "Mid Year Project Reflection":93}
 
-print(grades.values())
+print(grades.values()) #printing items and values
 
 for k in grades:
     print(k)

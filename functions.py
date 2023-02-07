@@ -1,163 +1,219 @@
-#author:RED 2/6/23
-import random
+#1
+#creating a function which finds the lowest number of any given array
+def minimum(arr):
+    arr.sort()
+    return arr[0]
 
+#2
+#creating a function which finds the highest number of any given array
+def maximum(arr):
+    arr.sort()
+    return arr[len(arr)-1]
 
-def add_two_numbers(one, two):  # add two numbers
-    return one + two
+#3
+#Creating a function which finds the greatest possible difference
+#from the highest and lowest numbers found in the array by the previous two functions
+def largest_possible_dif(arr):
+    highest = maximum(arr)
+    lowest = minimum(arr)
+    return(highest-lowest)
 
+#4
+#creating a function that will find the sum of two numbers - adds the two variables, sets them equal to a new variable, and returns them
+def find_sum():
+    num1 = input("Please input the first number you would like to add: ")
+    num2 = input("Please input the second number you would like to add: ")
+    num_sum = int(num1) + int(num2)
+    return(num_sum)
 
-def print_all_keys(dictionary):  # print all the keys in a dictionary
-    return [k for k in dictionary]
+#5
+#creating a function to count how many letter "a"'s are in a string
+def count_a():
+    word = input("Please input the string that you would like to find out the number of letter 'a's: ")
+    #lowercasing whatever string is input
+    lowered_word = word.lower()
+    #turning the inputted string into a list of individual characters
+    lowered_word[::-1]
+    #defining a count for the while loop and the number of a's detected
+    count = 0
+    num_a = 0
+    while (count < len(lowered_word)):
+        if (lowered_word[count] == "a"):
+            num_a += 1
+        count += 1
+    return (num_a)
 
+#6
+#creating a function which finds the factorial of any number inputted by the user
+def factorial(num):
+    #defining a count for the while loop so that it goes over each number and multiplies them
+    count = 0
+    #setting a product where all the numbers will be multiplied and saved to
+    product = 1
+    while (count < num):
+        count += 1
+        product *= count
+    return(product)
 
-def add_indexes_to_list(list):  # add index numbers to a list
-    for i, v in enumerate(list):
-        list[i] = f'{i}: {v}'
-    return list
+#7
+def better_is_palindrome(word):
+    palindrome = "".join(word[::-1])
+    return (palindrome.lower() == word.lower())
 
+#8
+#creating a function which prints the sum of all numbers from zero to, and including the input
+def sum_to(n):
+    #where the sum will be counted
+    total = 0
+    #counter for the while loop
+    count = 0
+    while (count < int(n)):
+        count += 1
+        total += count
+    return (total)
 
-def input_until_password(password):  # put user in an infinite loop until they put in the password
-    n = ''
-    while n != password:
-        n = input('please enter your password: ')
-    return 'access granted'
+#9
+def indexed_names (names):
+    for index, vars in enumerate(names):
+        #breaking each name into a list so that charcters can be added to the beginning of the strings
+        namex = [*vars] 
+        #recombining the lists into a string
+        namex.insert(0, str(index)+": ")
+        names[index] = "".join(namex)
+    return (names)
 
+#10
+def double_stuff (stuff):
+    for index, var in enumerate(stuff):
+            stuff[index] = var*2
+    return(stuff)
 
-def nickname_maker():  # Nickname creator
-    name = input('What is your name?: ')
-    prefixes = ['Lil', 'Big', 'The', 'Champ', 'Mr.', 'King', 'MVP']
-    suffixes = ['III', 'Jr.', 'Sr.', 'the one and only']
-    return f'Your nickname is: {random.choice(prefixes)} {name} {random.choice(suffixes)}!'
-
-
-def guess_the_number():  # Guess the number game
-    number = random.randint(1, 10)
-    print('Guess the number from 0-10!')
-    attempts = 0
-    while int(input(f'Guess {attempts}: ')) != number:
-        attempts += 1
-    if attempts == 1:
-        return 'Wow you got it on the first try!'
-    elif attempts < 5:
-        return 'hey thats pretty good!'
-    elif attempts < 10:
-        return "there's always next time!"
-    elif attempts < 20:
-        return 'how is this possible'
+#1
+def nearest_sq(n):
+    if n == 1 or n == 2:
+        return 1
+    if n%2==0:
+        temp1 = n/2
     else:
-        return 'never play again'
-
-
-def quiz_game():  # Quiz game
-    print('Welcome to my quiz game!')
-    print('There will be 4 questions. Your score will be returned when the game has concluded.')
-    score = 0
-    trivia_questions = {"What's the fastest land animal?": 'Cheetah',  # very tough questions
-                        "Who is the patron saint of Ireland?": 'St. Patrick',
-                        'What color is a Ruby?': 'Red',
-                        "Who was the 13th President of the United States?": 'Millard Fillmore'}
-    for question in trivia_questions:
-        print(question)
-        answer = input()
-        if answer.lower() != trivia_questions[question].lower():
-            print('Incorrect')
+        temp1 = (n+1)/2
+    temp2 = 0
+    temp3 = 0
+    while 1:
+        if temp1*temp1 >= n:
+            temp2 = temp1
         else:
-            score += 1
-            print('Correct!')
-    print('Thanks for playing!')
-    if score == 4:  # Return the score
-        return f'You had a perfect score of {score} points!'
-    elif score == 0:
-        return 'You got none correct.'
-    else:
-        return f'You got a score of {score} points!'
+            while 1:
+                temp0 = temp2 - temp1
+                if temp0 == 1:
+                    break
+                if temp0%2==0:
+                    temp3 = temp0/2 + temp1
+                else:
+                    temp3 = (temp0+1)/2 + temp1
+                if temp3*temp3 > n:
+                    if temp3 <= temp1:
+                        break
+                    temp2 = temp3
+                elif temp3*temp3 <n:
+                    if temp3 <= temp1:
+                        break
+                    temp1 = temp3
+                else: 
+                    return temp3*temp3
+            
+            if(n - temp1*temp1 >= temp2*temp2 - n):
+                return temp2*temp2
+            else: 
+                return temp1*temp1
+        if temp1%2==0:
+            temp1 = temp1/2
+        else:
+            temp1 = (temp1+1)/2
 
-
-def two_number_calculator(function, one, two):  # calculator for working with two numbers
-    if function == 'add':
-        return one + two
-    elif function == 'subtract':
-        return one - two
-    elif function == 'subtract two':
-        return two - one
-    elif function == 'divide':
-        return one / two
-    elif function == 'divide two':
-        return two / one
-    elif function == 'multiply':
-        return one * two
-    elif function == 'power':
-        return one ** two
-    elif function == 'inverse the sum':  # very handy
-        return (one + two) ** -1
-    else:
-        return f"unknown function: {function}"
-
-
-def blackjack():  # very simple blackjack
-    dealer = [random.randint(1, 10), random.randint(1, 10)]  # generate hands
-    your_hand = [random.randint(1, 10), random.randint(1, 10)]
-    print('Welcome to Blackjack!')
-    print(f'Your hand has a {your_hand[0]} and a {your_hand[1]} (Total = {sum(your_hand)})')
-    print(f'The dealer shows a {dealer[0]}.')
-    while True:  # main game loop
-        move = input('(H)it, (S)tand, or (F)old: ')
-        if move.lower() == 'h':  # add card to hand
-            your_hand.append(random.randint(1, 10))
-            print(f'The dealer gives you a {your_hand[-1]} (Total = {sum(your_hand)})')
-        if sum(your_hand) == 21:  # if you get lucky
-            print('You have a blackjack!')
-            break
-        if sum(your_hand) > 21:  # if you are not lucky
-            return 'You lose!'
-        elif move.lower() == 's':  # if you want to keep playing
-            break
-        elif move.lower() == 'f':  # if you give up
-            return 'You lose!'
-    print(f'The dealers second card is a {dealer[1]} (Total = {sum(dealer)})')
-
-    while sum(dealer) < 17:  # give more cards to the dealer (dealer stands on 17)
-        dealer.append(random.randint(1, 10))
-        print(f'The dealers draws a {dealer[-1]} (Total = {sum(dealer)})')
-
-    if sum(dealer) > 21:
-        return 'You lose!'
-    elif sum(your_hand) < sum(dealer):  # lose
-        return 'You lose!'
-    elif sum(your_hand) > sum(dealer):  # win
-        return 'You win!'
-    elif sum(your_hand) == sum(dealer):  # tie
-        return 'Push'
-
-
-def create_computer_lab_seating_chart(students, num_seats, randomize):  # Create a seating chart for B202
-    print('Creating seating chart...')
-    seats = {}
-    try:  # error handling
-        for i, v in enumerate(students):
-            if randomize:  # if you don't want the inputted order
-                seats[f'B202_{random.randint(1, num_seats) + 1}'] = v
+#2
+def sum_of_integers_in_string(s):
+    result = 0
+    current = ""
+    for i,char in enumerate(s):
+        if i != len(s) - 1:
+            if char.isnumeric():
+                current += char
             else:
-                seats[f'B202_{i+1}'] = v
-    except Exception:
-        return 'Input error'
+                if len(current) >= 1:
+                    result += int(current)
+                    current = ""
+        else:
+            if char.isnumeric():
+                if current:
+                    current += char
+                    result += int(current)
+                else:
+                    result += int(char)
+            else:
+                if current:
+                    result += int(current)
+               
+    return result
 
-    print('Here is your seating chart: ')
-    for v in seats:  # print out the entire seating chart
-        print(f'{v}: {seats[v]}')
-    return seats  # returns the dictionary
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-cycle-11-labs-p23jmarotta/lab_11-3_functions.py at main · fp-computer-programming/cycle-11-labs-p23jmarotta
+#3
+def solution(number):
+    sum=0
+    if number%3==0:
+        nearest_three=number-3
+    else:
+        nearest_three=number-(number%3)
+    if number%5==0:
+        nearest_five=number-5
+    else:
+        nearest_five=number-(number%5)
+    for x in range(nearest_three, 0, -3):
+        sum+=x
+    for y in range(nearest_five, 0, -5):
+        if y%3==0:
+            continue
+        else:
+            sum+=y
+    return sum
+
+#4
+def find_it(seq):
+    passes = 0
+    odd_appearance_amount = 0
+
+    answer = 0
+
+    # takes all numbers in the range of the list
+    for cardinal_num in range(min(seq), max(seq) + 2):
+        passes += 1
+        if passes == 2:
+            passes = 1
+
+            if not odd_appearance_amount % 2 == 0:
+                return answer
+
+            odd_appearance_amount = 0
+
+        # checks if any numbers in the range of the list matches a number in that list
+        for num in seq:
+            if num == cardinal_num:
+                if passes == 1:
+                    odd_appearance_amount += 1
+                    answer = num
+
+#5
+def count_bits(n):
+    out=""
+    count=0
+    while(1):
+        div=n//2
+        mod=n%2        
+        out+=str(mod)
+        if(div==0):
+            break
+        n=div  
+    for x in out:
+        if x=='1':
+            count+=1
+        else:
+            pass
+    return count
